@@ -1,11 +1,15 @@
 import './css/style.css';
 import goblinImage from './img/goblin.png';
-import * as Math from "node-forge";
 
 const gridSize = 4;
 const grid = document.createElement('div');
 grid.className = 'grid';
 document.body.appendChild(grid);
+
+// Создаем элемент character
+const character = document.createElement('div');
+character.className = 'character';
+grid.appendChild(character);
 
 for (let i = 0; i < gridSize * gridSize; i++){
     const cell = document.createElement('div');
@@ -20,11 +24,12 @@ grid.appendChild(goblin);
 
 function moveGoblin(){
     const cells = document.querySelectorAll('.cell');
-    const random = Math.floor(Math.random() * cells.length);
-    const randomCell = cells[random];
+    const randomIndex = Math.floor(Math.random() * cells.length);
+    const randomCell = cells[randomIndex];
 
-    if (character.parentElement !== cell) {
-        randomCell.appedChild('goblin')
+    // Проверяем, находится ли goblin в текущей ячейке
+    if (goblin.parentElement !== randomCell) {
+        randomCell.appendChild(goblin);
     }
 }
 
